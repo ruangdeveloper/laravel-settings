@@ -31,6 +31,6 @@ By participating in this open-source project, you become an integral part of the
 
 **Code of Conduct:**
 
-To ensure a welcoming and respectful environment for all contributors, please review and abide by our [Code of Conduct](https://github.com/ruangdeveloper/laravel-settings/CODE_OF_CONDUCT.md). We have a zero-tolerance policy for harassment or discrimination, and we're committed to fostering a collaborative and inclusive community.
+To ensure a welcoming and respectful environment for all contributors, please review and abide by our [Code of Conduct](https://github.com/ruangdeveloper/laravel-settings/blob/main/CODE_OF_CONDUCT.md). We have a zero-tolerance policy for harassment or discrimination, and we're committed to fostering a collaborative and inclusive community.
 
 Thank you for considering contributing to "Laravel Settings." Your involvement helps us improve and expand the package, benefiting developers worldwide.

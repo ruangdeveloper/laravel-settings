@@ -208,8 +208,8 @@ Certainly, adding a "Contributing" section to your package's documentation is a 
 
 # Contributing
 
-https://github.com/ruangdeveloper/laravel-settings/CONTRIBUTING.md
+https://github.com/ruangdeveloper/laravel-settings/blob/main/CONTRIBUTING.md
 
 # License
 
-https://github.com/ruangdeveloper/laravel-settings/LICENSE.md
+https://github.com/ruangdeveloper/laravel-settings/blob/main/LICENSE.md
