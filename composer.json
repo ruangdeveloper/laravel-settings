@@ -1,0 +1,29 @@
+{
+    "name": "ruangdeveloper/laravel-settings",
+    "description": "Manage model or application settings in database",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "RuangDeveloper\\LaravelSettings\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "RuangDeveloper\\LaravelSettings\\LaravelSettingsServiceProvider"
+            ]
+        }
+    },
+    "authors": [
+        {
+            "name": "Ruang Developer",
+            "email": "primary.ruangdeveloper@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "laravel/framework": "^10.0.0"
+    }
+}
