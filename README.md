@@ -204,8 +204,6 @@ return [
 ];
 ```
 
-Certainly, adding a "Contributing" section to your package's documentation is a great way to invite other developers to collaborate and make your package even better. Here's a sample "Contributing" section that you can include:
-
 # Contributing
 
 https://github.com/ruangdeveloper/laravel-settings/blob/main/CONTRIBUTING.md
