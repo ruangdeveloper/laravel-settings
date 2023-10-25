@@ -1,6 +1,15 @@
 <?php
 
 return [
+    // Change this to true if you want to use the cache feature.
+    'with_cache' => false,
+
+    // The cache key prefix that will be used to store the settings in the cache.
+    'cache_prefix' => 'laravel-settings',
+
+    // Cache lifetime in seconds.
+    'cache_lifetime' => 60 * 60 * 24 * 7, // 7 days
+
     // The model that will be used to retrieve and store settings.
     // You can change this if you want to use a different model.
     'model' => \RuangDeveloper\LaravelSettings\Models\Setting::class,
