@@ -179,6 +179,29 @@ $isSubscribed = $user->getSetting('subscribe_newsletter');
 echo $isSubscribed // false
 ```
 
+## Cache
+
+As you know, this package uses a database to store setting values. Every time you retrieve a setting value, it means you are making a query to the database. This is not a problem for small-scale applications, but it can have a significant impact when used in large-scale applications. To work around this, you can enable caching to store setting values in the cache, so the query is only performed once when you first attempt to retrieve a setting value.
+
+To enable caching, you can go to the file `config/laravel-settings.php` and change the value of `with_cache` to true. You can also set the prefix and lifetime there.
+
+```php
+<?php
+
+return [
+    // Change this to true if you want to use the cache feature.
+    'with_cache' => true,
+
+    // The cache key prefix that will be used to store the settings in the cache.
+    'cache_prefix' => 'laravel-settings',
+
+    // Cache lifetime in seconds.
+    'cache_lifetime' => 60 * 60 * 24 * 7, // 7 days
+
+    // other config
+];
+```
+
 ## Customization
 
 ### Using Your Own Model
