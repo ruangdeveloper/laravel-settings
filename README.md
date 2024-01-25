@@ -69,7 +69,17 @@ $siteTItle = Settings::get('site_title');
 $siteTitle = Settings::get('site_title', 'Your Default Awesome Website');
 ```
 
-### Forget a global setting
+### Delete a global setting
+
+Now, if you want to delete the setting
+
+```php
+use RuangDeveloper\LaravelSettings\Facades\Settings;
+
+Settings::delete('site_title');
+```
+
+### Forget a global setting (deprecated, use delete instead)
 
 Now, if you want to delete the setting
 
@@ -120,7 +130,14 @@ $isSubscribed = $user->getSetting('subscribe_newsletter', false);
 //
 ```
 
-**Forget a setting**
+**Delete a setting**
+
+```php
+$user = App\Models\User::find(1);
+$user->deleteSetting('subscribe_newsletter');
+```
+
+**Forget a setting (deprecated, use delete instead)**
 
 ```php
 $user = App\Models\User::find(1);
