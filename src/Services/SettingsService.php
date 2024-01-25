@@ -52,10 +52,22 @@ class SettingsService
     /**
      * Forget a setting value.
      * 
+     * @deprecated Use delete() instead.
      * @param string $key
      * @return void
      */
     public function forget(string $key): void
+    {
+        $this->deleteSetting($key);
+    }
+
+    /**
+     * Delete a setting item.
+     * 
+     * @param string $key
+     * @return void
+     */
+    public function delete(string $key): void
     {
         $this->deleteSetting($key);
     }
@@ -91,12 +103,26 @@ class SettingsService
     /**
      * Forget a setting value with model.
      * 
+     * @deprecated Use deleteWithModel() instead.
      * @param string $key
      * @param string $modelType
      * @param mixed $modelId
      * @return void
      */
     public function forgetWithModel(string $key, string $modelType, mixed $modelId): void
+    {
+        $this->deleteSetting($key, $modelType, $modelId);
+    }
+
+    /**
+     * Delete a setting item with model.
+     * 
+     * @param string $key
+     * @param string $modelType
+     * @param mixed $modelId
+     * @return void
+     */
+    public function deleteWithModel(string $key, string $modelType, mixed $modelId): void
     {
         $this->deleteSetting($key, $modelType, $modelId);
     }

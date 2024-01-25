@@ -92,10 +92,32 @@ trait HasSettings
     /**
      * Forget a setting value.
      * 
+     * @deprecated Use deleteSetting() instead.
      * @param string $key
      * @return void
      */
     public function forgetSetting(string $key): void
+    {
+        $this->settings()->where(
+            [
+                config('laravel-settings.key_name') => $key,
+                config('laravel-settings.morph_type') => $this->getMorphClass(),
+                config('laravel-settings.morph_id') => $this->getKey(),
+            ]
+        )->delete();
+
+        if (config('laravel-settings.with_cache')) {
+            Cache()->forget(Support::getCacheKey($key, $this->getMorphClass(), $this->getKey()));
+        }
+    }
+
+    /**
+     * Delete a setting item
+     * 
+     * @param string $key
+     * @return void
+     */
+    public function deleteSetting(string $key): void
     {
         $this->settings()->where(
             [
