@@ -24,6 +24,6 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "laravel/framework": "^10.0.0"
+        "laravel/framework": "^11.0"
     }
 }
