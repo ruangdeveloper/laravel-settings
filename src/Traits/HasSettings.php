@@ -3,6 +3,8 @@
 namespace RuangDeveloper\LaravelSettings\Traits;
 
 use Illuminate\Support\Facades\Cache;
+use RuangDeveloper\LaravelSettings\Enums\Type;
+use RuangDeveloper\LaravelSettings\Services\SettingsService;
 use RuangDeveloper\LaravelSettings\Supports\Support;
 
 trait HasSettings
@@ -130,5 +132,95 @@ trait HasSettings
         if (config('laravel-settings.with_cache')) {
             Cache()->forget(Support::getCacheKey($key, $this->getMorphClass(), $this->getKey()));
         }
+    }
+
+    /**
+     * Get setting value and cast it to a specific type.
+     * 
+     * @param string $key
+     * @param Type
+     * @param mixed $default
+     * @return mixed
+     */
+    public function getSettingAs(string $key, Type $type, mixed $default = null): mixed
+    {
+        return $this->getSettingService()->getAs($key, $type, $default, $this->getMorphClass(), $this->getKey());
+    }
+
+    /**
+     * Get setting value and cast it to string.
+     * 
+     * @param string $key
+     * @param mixed $default
+     * @return mixed
+     */
+    public function getSettingString(string $key, mixed $default = null): mixed
+    {
+        return $this->getSettingAs($key, Type::String, $default);
+    }
+
+    /**
+     * Get setting value and cast it to integer.
+     * 
+     * @param string $key
+     * @param mixed $default
+     * @return mixed
+     */
+    public function getSettingInteger(string $key, mixed $default = null): mixed
+    {
+        return $this->getSettingAs($key, Type::Integer, $default);
+    }
+
+    /**
+     * Get setting value and cast it to float.
+     * 
+     * @param string $key
+     * @param mixed $default
+     * @return mixed
+     */
+    public function getSettingFloat(string $key, mixed $default = null): mixed
+    {
+        return $this->getSettingAs($key, Type::Float, $default);
+    }
+
+    /**
+     * Get setting value and cast it to boolean.
+     * 
+     * @param string $key
+     * @param mixed $default
+     * @return mixed
+     */
+    public function getSettingBoolean(string $key, mixed $default = null): mixed
+    {
+        return $this->getSettingAs($key, Type::Boolean, $default);
+    }
+
+    /**
+     * Get setting value and cast it to array.
+     * 
+     * @param string $key
+     * @param mixed $default
+     * @return mixed
+     */
+    public function getSettingArray(string $key, mixed $default = null): mixed
+    {
+        return $this->getSettingAs($key, Type::Array, $default);
+    }
+
+    /**
+     * Get setting value and cast it to object.
+     * 
+     * @param string $key
+     * @param mixed $default
+     * @return mixed
+     */
+    public function getSettingObject(string $key, mixed $default = null): mixed
+    {
+        return $this->getSettingAs($key, Type::Object, $default);
+    }
+
+    private function getSettingService(): SettingsService
+    {
+        return app(SettingsService::class);
     }
 }

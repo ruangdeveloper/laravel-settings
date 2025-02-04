@@ -69,6 +69,39 @@ $siteTItle = Settings::get('site_title');
 $siteTitle = Settings::get('site_title', 'Your Default Awesome Website');
 ```
 
+**Get a setting and cast it to a specific type**
+
+```php
+use RuangDeveloper\LaravelSettings\Enums\Type;
+use RuangDeveloper\LaravelSettings\Facades\Settings;
+
+// retrieve the global site title
+$siteTitle = Settings::getAs('site_title', Type::String);
+
+// you may want to add a default fallback value if the setting
+// with provided key doesn't exists in the database
+$siteTitle = Settings::getAs('site_title', Type::String, 'Your Default Awesome Website');
+```
+
+Available types:
+
+- String
+- Integer
+- Float
+- Boolean
+- Array
+- Object
+
+You can also use the following methods to get a setting and cast it to a specific type:
+
+- `Settings::getString('key', $default)`
+- `Settings::getInteger('key', $default)`
+- `Settings::getFloat('key', $default)`
+- `Settings::getBoolean('key', $default)`
+- `Settings::getArray('key', $default)`
+- `Settings::getObject('key', $default)`
+
+
 ### Delete a global setting
 
 Now, if you want to delete the setting
@@ -129,6 +162,38 @@ $isSubscribed = $user->getSetting('subscribe_newsletter');
 $isSubscribed = $user->getSetting('subscribe_newsletter', false);
 //
 ```
+
+**Get a setting and cast it to a specific type**
+
+```php
+use RuangDeveloper\LaravelSettings\Enums\Type;
+use RuangDeveloper\LaravelSettings\Facades\Settings;
+
+$user = App\Models\User::find(1);
+$isSubscribed = $user->getSettingAs('subscribe_newsletter', Type::Boolean);
+
+// you may want to add a default fallback value if the setting
+// with provided key doesn't exists in the database
+$isSubscribed = $user->getSettingAs('subscribe_newsletter', Type::Boolean, false);
+```
+
+Available types:
+
+- String
+- Integer
+- Float
+- Boolean
+- Array
+- Object
+
+You can also use the following methods to get a setting and cast it to a specific type:
+
+- `$yourModel->getSettingString('key', $default)`
+- `$yourModel->getSettingInteger('key', $default)`
+- `$yourModel->getSettingFloat('key', $default)`
+- `$yourModel->getSettingBoolean('key', $default)`
+- `$yourModel->getSettingArray('key', $default)`
+- `$yourModel->getSettingObject('key', $default)`
 
 **Delete a setting**
 
