@@ -16,7 +16,7 @@ Whether you need to manage site-wide configurations, user preferences, or any ot
 
 ## Requirements
 
-- Laravel ^10.0
+- Laravel ^11.0 || ^12.0
 
 ## Installation:
 
