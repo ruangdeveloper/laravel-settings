@@ -13,6 +13,6 @@ jobs:
       - run: echo "The ${{ github.repository }} repository has been cloned to the runner."
       - uses: php-actions/composer@v6
       - run: echo "Composer dependencies have been installed"
-      - run: mkdir -p vendor/orchestra/testbench-core/laravel/bootstrap/cache  # Ensure the directory exists
-      - run: chmod -R 777 vendor/orchestra/testbench-core/laravel/bootstrap/cache
+      - run: sudo chmod -R 0777 vendor/orchestra/testbench-core/laravel/bootstrap/*
+      - run: sudo chmod -R 0777 vendor/orchestra/testbench-core/laravel/storage/*
       - run: vendor/bin/phpunit
