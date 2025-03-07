@@ -34,20 +34,7 @@ trait HasSettings
      */
     public function setSetting(string $key, mixed $value): void
     {
-        $this->settings()->updateOrCreate(
-            [
-                config('laravel-settings.key_name') => $key,
-            ],
-            [
-                config('laravel-settings.value_name') => $value,
-                config('laravel-settings.morph_type') => $this->getMorphClass(),
-                config('laravel-settings.morph_id') => $this->getKey(),
-            ]
-        );
-
-        if (config('laravel-settings.with_cache')) {
-            Cache()->forget(Support::getCacheKey($key, $this->getMorphClass(), $this->getKey()));
-        }
+        $this->getSettingService()->setWithModel($key, $value, $this->getMorphClass(), $this->getKey());
     }
 
     /**
@@ -59,36 +46,7 @@ trait HasSettings
      */
     public function getSetting(string $key, mixed $default = null): mixed
     {
-        if (config('laravel-settings.with_cache')) {
-            $cacheKey = Support::getCacheKey($key, $this->getMorphClass(), $this->getKey());
-
-            if (Cache::has($cacheKey)) {
-                return Cache::get($cacheKey);
-            }
-        }
-
-        $setting = $this->settings()->where(config('laravel-settings.key_name'), $key)->first();
-
-        if ($setting) {
-            if (config('laravel-settings.with_cache')) {
-                Cache::put($cacheKey, $setting->value, config('laravel-settings.cache_lifetime'));
-            }
-            return $setting->value;
-        }
-
-        if (!is_null($default)) {
-            return $default;
-        }
-
-        if (
-            config('laravel-settings.model_defaults') &&
-            array_key_exists($this->getMorphClass(), config('laravel-settings.model_defaults')) &&
-            array_key_exists($key, config('laravel-settings.model_defaults')[$this->getMorphClass()])
-        ) {
-            return config('laravel-settings.model_defaults')[$this->getMorphClass()][$key];
-        }
-
-        return $default;
+        return $this->getSettingService()->getWithModel($key, $this->getMorphClass(), $this->getKey(), $default);
     }
 
     /**
@@ -100,17 +58,7 @@ trait HasSettings
      */
     public function forgetSetting(string $key): void
     {
-        $this->settings()->where(
-            [
-                config('laravel-settings.key_name') => $key,
-                config('laravel-settings.morph_type') => $this->getMorphClass(),
-                config('laravel-settings.morph_id') => $this->getKey(),
-            ]
-        )->delete();
-
-        if (config('laravel-settings.with_cache')) {
-            Cache()->forget(Support::getCacheKey($key, $this->getMorphClass(), $this->getKey()));
-        }
+        $this->getSettingService()->forgetWithModel($key, $this->getMorphClass(), $this->getKey());
     }
 
     /**
@@ -121,17 +69,7 @@ trait HasSettings
      */
     public function deleteSetting(string $key): void
     {
-        $this->settings()->where(
-            [
-                config('laravel-settings.key_name') => $key,
-                config('laravel-settings.morph_type') => $this->getMorphClass(),
-                config('laravel-settings.morph_id') => $this->getKey(),
-            ]
-        )->delete();
-
-        if (config('laravel-settings.with_cache')) {
-            Cache()->forget(Support::getCacheKey($key, $this->getMorphClass(), $this->getKey()));
-        }
+        $this->getSettingService()->deleteWithModel($key, $this->getMorphClass(), $this->getKey());
     }
 
     /**
