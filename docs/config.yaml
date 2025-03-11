@@ -1,0 +1,3 @@
+theme: jekyll-theme-minimal
+title: Laravel Settings Documentation
+description: a powerful and flexible Laravel package designed to simplify the management of application settings, both at the global and model-specific levels.
